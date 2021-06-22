@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculo de Altitude</title>
+
+    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <div class="container d-sm-none">
+
+        <h1 class="text-center">Calculo de Altitude</h1>
+
+        <div class="mb-3">
+            <label for="input1" class="form-label h3">Altitude Inicial</label>
+            <p id="input1"></p>
+
+            <button type="button" class="btn btn-danger" onclick="altitude1()">Adicionar Altitude</button> 
+          </div>
+
+          <hr>
+
+          <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label h3">Altitude Final</label>
+            <p id="input2"></p>
+
+            <button type="button" class="btn btn-danger" onclick="altitude2()">Adicionar Altitude</button>
+          </div>
+
+          <h1 class="text-center">Diferença de Altitude</h1> 
+          <p class="text-center" id="resultado"></p>
+
+    </div>
+
+    <div class="container d-none d-sm-block">
+
+        <h1 class="text-center">Esta aplicação funciona apenas em Dispositivos Móveis. Por favor, acesse pelo seu smartphone.</h1>
+
+    </div>
+
+</body>
+<script type="text/javascript">
+
+// Setando os "labels" do HTML que serão utilizados
+
+altitudeInicial = document.getElementById("input1");
+
+altitudeFinal = document.getElementById("input2");
+
+resultado = document.getElementById("resultado");
+
+// Adquirindo o 1º Valor de Altitude
+
+    function altitude1(){
+
+        navigator.geolocation.getCurrentPosition(print_altitude);
+
+            function print_altitude(position) {
+                
+                
+                console.log(position.coords.altitude)
+                AltitudeValor1 = position.coords.altitude;
+                console.log(AltitudeValor1)
+
+                altitudeInicial.innerHTML = "" + AltitudeValor1;
+                
+
+            }
+    }
+
+// Adquirindo o 2º Valor de Altitude e Realizando a Subtração
+
+    function altitude2(){
+
+        navigator.geolocation.getCurrentPosition(print_altitude2);
+
+            function print_altitude2(position) {
+                
+                
+                console.log(position.coords.altitude)
+                AltitudeValor2 = position.coords.altitude;
+                console.log(AltitudeValor2)
+
+                altitudeFinal.innerHTML = "" + AltitudeValor2;
+                
+                ResultadoAlt = AltitudeValor1 - AltitudeValor2;
+                resultado.innerHTML = ResultadoAlt;
+            }
+    }
+  
+
+</script>
+
+
+
+
+</html>
